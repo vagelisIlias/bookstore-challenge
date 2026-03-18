@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\Author;
-use App\Models\Book;
+use App\Modules\Authors\Database\Author;
+use App\Modules\Books\Database\Book;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 

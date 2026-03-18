@@ -1,7 +1,7 @@
 <?php
 
-use App\Providers\AppServiceProvider;
+use App\Modules\Authors\Providers\AuthorServiceProvider;
 
 return [
-    AppServiceProvider::class,
+    AuthorServiceProvider::class,
 ];

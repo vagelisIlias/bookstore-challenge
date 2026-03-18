@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
+declare(strict_types=1);
+
+use App\Modules\Authors\Http\Controllers\AuthorController;
+use App\Modules\Books\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/authors', [AuthorController::class, 'store']);
