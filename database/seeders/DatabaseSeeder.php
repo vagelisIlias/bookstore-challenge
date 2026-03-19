@@ -28,11 +28,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Isaac Asimov',
         ]);
 
+        // Books for Orwell
         Book::create([
             'uuid' => Uuid::uuid4()->toString(),
             'title' => '1984',
             'isbn' => '978-0451524935',
             'author_id' => $orwell->id,
+            'available' => true,
+            'borrower_name' => null,
         ]);
 
         Book::create([
@@ -40,6 +43,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Animal Farm',
             'isbn' => '978-0451526342',
             'author_id' => $orwell->id,
+            'available' => false, // δανεισμένο
+            'borrower_name' => 'Alice',
         ]);
 
         Book::create([
@@ -47,6 +52,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'The Lord of the Rings',
             'isbn' => '978-0618640157',
             'author_id' => $tolkien->id,
+            'available' => true,
+            'borrower_name' => null,
         ]);
 
         Book::create([
@@ -54,6 +61,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'The Hobbit',
             'isbn' => '978-0547928227',
             'author_id' => $tolkien->id,
+            'available' => false,
+            'borrower_name' => 'Bob',
         ]);
 
         Book::create([
@@ -61,6 +70,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Foundation',
             'isbn' => '978-0553293357',
             'author_id' => $asimov->id,
+            'available' => true,
+            'borrower_name' => null,
         ]);
 
         Book::create([
@@ -68,6 +79,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'I, Robot',
             'isbn' => '978-0553294385',
             'author_id' => $asimov->id,
+            'available' => false,
+            'borrower_name' => 'Charlie',
         ]);
     }
 }
