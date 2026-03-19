@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Authors\Database;
 
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorCommand;
+use App\Modules\Authors\Commands\CreateAuthorCommand;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface AuthorRepository

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Modules\Authors\Database;
 
+use App\Modules\Authors\Commands\CreateAuthorCommand;
 use App\Modules\Authors\Database\Author;
 use App\Modules\Authors\Database\AuthorRepository;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorCommand;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class EloquentAuthorRepository implements AuthorRepository
