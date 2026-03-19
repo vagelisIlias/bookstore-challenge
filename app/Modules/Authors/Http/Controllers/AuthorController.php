@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Modules\Authors\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Modules\Authors\Commands\CommandBus;
+use App\Modules\Authors\Commands\CreateAuthorCommand;
 use App\Modules\Authors\Http\Request\StoreAuthorRequest;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorCommand;
 use App\Modules\Authors\Services\ListAuthors\ListAuthorsHandler;
 use App\Modules\Authors\Services\ListAuthors\ListAuthorsQuery;
+use App\Modules\Commands\CommandBus;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AuthorController

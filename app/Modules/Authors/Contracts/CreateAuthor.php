@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Authors\Services\CreateAuthors;
+namespace App\Modules\Authors\Contracts;
 
+use App\Modules\Authors\Commands\CreateAuthorCommand;
 use App\Modules\Authors\Database\Author;
 
 interface CreateAuthor

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Authors\Services\CreateAuthors;
+namespace App\Modules\Authors\Commands;
 
+use App\Modules\Authors\Commands\CreateAuthorCommand;
+use App\Modules\Authors\Contracts\CreateAuthor;
 use App\Modules\Authors\Database\Author;
 use App\Modules\Authors\Database\AuthorRepository;
 use App\Modules\Authors\Exceptions\AuthorAlreadyExistsException;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthor;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorCommand;
 
 final class CreateAuthorCommandHandler implements CreateAuthor
 {
