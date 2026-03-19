@@ -7,6 +7,7 @@ namespace App\Modules\Books\Services\ShowBook;
 use App\Modules\Books\Database\Book;
 use App\Modules\Books\Database\BookRepository;
 use App\Modules\Books\Exceptions\BookNotFoundException;
+use App\Modules\Books\Services\ShowBook\ShowBookQuery;
 
 final class ShowBookHandler
 {

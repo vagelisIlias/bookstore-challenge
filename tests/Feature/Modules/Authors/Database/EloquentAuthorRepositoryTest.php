@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Modules\Authors\Database;
 
-use Tests\TestCase;
+use App\Modules\Authors\Commands\CreateAuthorCommand;
 use App\Modules\Authors\Database\AuthorRepository;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorDto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 final class EloquentAuthorRepositoryTest extends TestCase
 {
@@ -18,9 +18,9 @@ final class EloquentAuthorRepositoryTest extends TestCase
         // Arrange
         $repository = $this->app->make(AuthorRepository::class);
 
-        $repository->storeAuthor(new CreateAuthorDto(name: 'Author 1'));
-        $repository->storeAuthor(new CreateAuthorDto(name: 'Author 2'));
-        $repository->storeAuthor(new CreateAuthorDto(name: 'Author 3'));
+        $repository->storeAuthor(new CreateAuthorCommand(name: 'Author 1'));
+        $repository->storeAuthor(new CreateAuthorCommand(name: 'Author 2'));
+        $repository->storeAuthor(new CreateAuthorCommand(name: 'Author 3'));
 
         // Act
         $results = $repository->findAllAuthors(1);
@@ -35,7 +35,7 @@ final class EloquentAuthorRepositoryTest extends TestCase
         $name = 'Author 1';
         $repository = $this->app->make(AuthorRepository::class);
 
-        $repository->storeAuthor(new CreateAuthorDto(name: $name));
+        $repository->storeAuthor(new CreateAuthorCommand(name: $name));
 
         // Act
         $result = $repository->findByName($name);
@@ -52,7 +52,7 @@ final class EloquentAuthorRepositoryTest extends TestCase
         $repository = $this->app->make(AuthorRepository::class);
 
         // Act
-        $author = $repository->storeAuthor(new CreateAuthorDto(name: $name));
+        $author = $repository->storeAuthor(new CreateAuthorCommand(name: $name));
 
         // Assert
         $this->assertEquals($name, $author->name);
