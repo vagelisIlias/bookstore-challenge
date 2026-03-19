@@ -6,7 +6,7 @@ namespace App\Modules\Authors\Database;
 
 use App\Modules\Authors\Database\Author;
 use App\Modules\Authors\Database\AuthorRepository;
-use App\Modules\Authors\Services\CreateAuthors\CreateAuthorDto;
+use App\Modules\Authors\Services\CreateAuthors\CreateAuthorCommand;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class EloquentAuthorRepository implements AuthorRepository
@@ -21,10 +21,10 @@ final class EloquentAuthorRepository implements AuthorRepository
         return Author::where('name', $name)->first();
     }
 
-    public function storeAuthor(CreateAuthorDto $createAuthorDto): Author
+    public function storeAuthor(CreateAuthorCommand $createAuthorCommand): Author
     {
         return Author::create([
-            'name' => $createAuthorDto->name,
+            'name' => $createAuthorCommand->name,
         ]);
     }
 }
