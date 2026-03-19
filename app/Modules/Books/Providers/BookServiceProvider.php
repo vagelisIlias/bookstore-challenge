@@ -8,6 +8,8 @@ use App\Modules\Books\Commands\BorrowBookCommand;
 use App\Modules\Books\Commands\BorrowBookCommandHandler;
 use App\Modules\Books\Commands\ReturnBookCommand;
 use App\Modules\Books\Commands\ReturnBookCommandHandler;
+use App\Modules\Books\Contracts\BorrowBook;
+use App\Modules\Books\Contracts\ReturnBook;
 use App\Modules\Books\Database\BookRepository;
 use App\Modules\Books\Database\EloquentBookRepository;
 use App\Modules\Commands\AppCommandBus;
@@ -20,6 +22,8 @@ final class BookServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(CommandBus::class, AppCommandBus::class);
+        $this->app->bind(BorrowBook::class, BorrowBookCommandHandler::class);
+        $this->app->bind(ReturnBook::class, ReturnBookCommandHandler::class);
         $this->app->bind(BookRepository::class, EloquentBookRepository::class);
     }
 

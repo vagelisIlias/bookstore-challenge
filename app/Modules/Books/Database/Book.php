@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Modules\Books\Database;
 
 use App\Modules\Authors\Database\Author;
+use Database\Factories\BookFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Book extends Model
 {
-    use HasUuids;
+    use HasUuids, HasFactory;
 
     protected $fillable = [
         'uuid',
@@ -36,5 +38,13 @@ class Book extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
+    }
+
+    /**
+     * Let Laravel know where the factory is, now that it’s inside modules
+     */
+    protected static function newFactory(): BookFactory
+    {
+        return new BookFactory();
     }
 }
