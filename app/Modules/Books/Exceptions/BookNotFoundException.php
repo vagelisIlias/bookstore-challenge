@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace App\Modules\Books\Exceptions;
 
-use Exception;
-use Throwable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-final class BookNotFoundException extends Exception
+final class BookNotFoundException extends ModelNotFoundException
 {
-    public function __construct(?Throwable $previous = null)
+    public function __construct()
     {
-        parent::__construct(
-            message: "Book not found",
-            code: 404,
-            previous: $previous
-        );
+        parent::__construct('Book not found');
     }
 }

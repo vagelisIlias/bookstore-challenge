@@ -4,27 +4,19 @@ declare(strict_types=1);
 
 namespace App\Modules\Authors\Database;
 
-use App\Modules\Authors\Commands\CreateAuthorCommand;
 use App\Modules\Authors\Database\Author;
 use App\Modules\Authors\Database\AuthorRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Modules\Library\Database\EloquentRepository;
 
-final class EloquentAuthorRepository implements AuthorRepository
+final class EloquentAuthorRepository extends EloquentRepository implements AuthorRepository
 {
-    public function findAllAuthors(int $perPage): LengthAwarePaginator
+    public function __construct(Author $model)
     {
-        return Author::paginate($perPage);
+        parent::__construct($model);
     }
 
     public function findByName(string $name): ?Author
     {
         return Author::where('name', $name)->first();
-    }
-
-    public function storeAuthor(CreateAuthorCommand $createAuthorCommand): Author
-    {
-        return Author::create([
-            'name' => $createAuthorCommand->name,
-        ]);
     }
 }

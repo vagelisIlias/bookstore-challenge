@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Modules\Books\Exceptions;
 
-use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-class BookAlreadyExistsException extends Exception
+class BookAlreadyExistsException extends HttpException
 {
     public function __construct(?Throwable $previous = null)
     {
         parent::__construct(
-            message: "Book already exists",
-            code: 409,
-            previous: $previous
+            409,
+            "Book already exists",
+            $previous,
         );
     }
 }

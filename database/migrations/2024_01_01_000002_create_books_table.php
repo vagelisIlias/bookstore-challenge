@@ -16,7 +16,6 @@ return new class extends Migration
             $table->boolean('available')->default(true);
             $table->string('borrower_name')->nullable();
             $table->foreignId('author_id')->constrained('authors');
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

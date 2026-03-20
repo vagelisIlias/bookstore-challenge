@@ -18,7 +18,7 @@ final class StoreBookRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'isbn' => 'required|string|max:20',
-            'author_uuid' => 'required|string',
+            'author_uuid' => 'required|string|exists:authors,uuid',
         ];
     }
 }
