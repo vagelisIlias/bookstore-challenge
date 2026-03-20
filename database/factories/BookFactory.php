@@ -19,7 +19,6 @@ class BookFactory extends Factory
             'available' => true,
             'borrower_name' => null,
             'author_id' => Author::factory(),
-            'is_active' => true,
         ];
     }
 }

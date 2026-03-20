@@ -20,11 +20,12 @@ readonly class CreateBook
     public function handle(BookRepository $bookRepository, AuthorRepository $authorRepository): Book
     {
         $existingBook = $bookRepository->findByIsbn($this->isbn);
-        $author = $authorRepository->requireByUuid($this->authorUuid);
 
         if ($existingBook) {
             throw new BookAlreadyExistsException();
         }
+
+        $author = $authorRepository->requireByUuid($this->authorUuid);
 
         $book = Book::new($this->title, $this->isbn, $author->id);
         $bookRepository->save($book);

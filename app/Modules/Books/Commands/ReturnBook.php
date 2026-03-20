@@ -21,7 +21,6 @@ readonly class ReturnBook
         }
 
         $book->return();
-
         $bookRepository->save($book);
 
         return $book;
