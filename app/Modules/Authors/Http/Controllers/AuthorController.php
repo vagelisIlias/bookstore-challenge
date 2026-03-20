@@ -4,28 +4,25 @@ declare(strict_types=1);
 
 namespace App\Modules\Authors\Http\Controllers;
 
-use App\Modules\Authors\Commands\CreateAuthorCommand;
+use App\Modules\Authors\Commands\CreateAuthor;
+use App\Modules\Authors\Database\AuthorRepository;
 use App\Modules\Authors\Http\Request\StoreAuthorRequest;
-use App\Modules\Authors\Services\ListAuthors\ListAuthorsHandler;
-use App\Modules\Authors\Services\ListAuthors\ListAuthorsQuery;
-use App\Modules\Commands\CommandBus;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AuthorController
 {
-    public function index(Request $request, ListAuthorsHandler $handler): JsonResponse
+    public function index(AuthorRepository $authorRepository): JsonResponse
     {
         return response()->json(
-            $handler->handle(new ListAuthorsQuery((int) $request->query('per_page', 15))),
+            $authorRepository->findAll(),
             Response::HTTP_OK);
     }
 
-    public function store(StoreAuthorRequest $request, CommandBus $bus): JsonResponse
+    public function store(StoreAuthorRequest $request): JsonResponse
     {
         return response()->json(
-            $bus->dispatch(new CreateAuthorCommand($request->validated()['name'])),
+            dispatch_sync(new CreateAuthor((string) $request->string('name'))),
             Response::HTTP_CREATED);
     }
 }

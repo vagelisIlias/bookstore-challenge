@@ -5,14 +5,9 @@ declare(strict_types=1);
 namespace App\Modules\Books\Database;
 
 use App\Modules\Books\Database\Book;
-use App\Modules\Books\Services\UpdateBook\UpdateBookDto;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Modules\Library\Database\Repository;
 
-interface BookRepository
+interface BookRepository extends Repository
 {
-    public function findAllBooks(array $filters, int $perPage = 10): LengthAwarePaginator;
-    public function findByUuid(string $uuid): ?Book;
     public function findByIsbn(string $isbn): ?Book;
-    public function storeBook(string $title, string $isbn, int $authorId): Book;
-    public function updateBook(Book $book, UpdateBookDto $updateBookDto): Book;
 }

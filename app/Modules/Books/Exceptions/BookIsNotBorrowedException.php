@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Modules\Books\Exceptions;
 
-use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-final class BookIsNotBorrowedException extends Exception
+class BookIsNotBorrowedException extends HttpException
 {
     public function __construct(?Throwable $previous = null)
     {
         parent::__construct(
-            message: "Book is not borrowed",
-            code: 400,
-            previous: $previous
+            409,
+            "Book is not borrowed",
+            $previous
         );
     }
 }
