@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Tests\Feature\Modules\Books\Database;
+use App\Modules\Authors\Database\Author;
 use App\Modules\Books\Database\Book;
 use App\Modules\Books\Database\EloquentBookRepository;
 use App\Modules\Books\Services\UpdateBook\UpdateBookDto;
@@ -68,5 +69,24 @@ final class EloquentBookRepositoryTest extends TestCase
         $this->assertFalse($updated->available);
         $this->assertEquals('Nikolas', $updated->borrower_name);
         $this->assertFalse($updated->is_active);
+    }
+
+    public function test_it_can_store_a_book(): void
+    {
+        // Arrange
+        $author = Author::factory()->create();
+
+        $this->repository->storeBook(
+            title: '1984',
+            isbn: '978-0451524935',
+            authorId: $author->id
+        );
+
+        // Assert
+        $this->assertDatabaseHas('books', [
+            'title' => '1984',
+            'isbn' => '978-0451524935',
+            'author_id' => $author->id,
+        ]);
     }
 }
