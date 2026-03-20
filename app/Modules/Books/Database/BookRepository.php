@@ -12,5 +12,7 @@ interface BookRepository
 {
     public function findAllBooks(array $filters, int $perPage = 10): LengthAwarePaginator;
     public function findByUuid(string $uuid): ?Book;
+    public function findByIsbn(string $isbn): ?Book;
+    public function storeBook(string $title, string $isbn, int $authorId): Book;
     public function updateBook(Book $book, UpdateBookDto $updateBookDto): Book;
 }

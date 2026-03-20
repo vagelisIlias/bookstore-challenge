@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Modules\Books\Http\Controllers;
 
 use App\Modules\Books\Commands\BorrowBookCommand;
+use App\Modules\Books\Commands\CreateBookCommand;
 use App\Modules\Books\Commands\ReturnBookCommand;
 use App\Modules\Books\Http\Request\BorrowerNameRequest;
+use App\Modules\Books\Http\Request\StoreBookRequest;
 use App\Modules\Books\Services\ListBooks\ListBooksHandler;
 use App\Modules\Books\Services\ListBooks\ListBooksQuery;
 use App\Modules\Books\Services\ShowBook\ShowBookHandler;
@@ -30,6 +32,15 @@ final class BookController
             )),
             Response::HTTP_OK
         );
+    }
+
+    public function store(StoreBookRequest $request, CommandBus $bus): JsonResponse
+    {
+        return response()->json($bus->dispatch(new CreateBookCommand(
+            title: $request->validated()['title'],
+            isbn: $request->validated()['isbn'],
+            authorUuid: $request->validated()['author_uuid'])),
+            Response::HTTP_CREATED);
     }
 
     public function show(string $uuid, ShowBookHandler $handler): JsonResponse
