@@ -27,6 +27,20 @@ final class EloquentBookRepository implements BookRepository
         return Book::with('author')->where('uuid', $uuid)->first();
     }
 
+    public function findByIsbn(string $isbn): ?Book
+    {
+        return Book::where('isbn', $isbn)->first();
+    }
+
+    public function storeBook(string $title, string $isbn, int $authorId): Book
+    {
+        return Book::create([
+            'title' => $title,
+            'isbn' => $isbn,
+            'author_id' => $authorId,
+        ]);
+    }
+
     public function updateBook(Book $book, UpdateBookDto $updateBookDto): Book
     {
         $book->update([
